@@ -1,10 +1,13 @@
 import React from 'react';
+import { Provider } from 'mobx-react'
 import logo from './logo.svg';
+import stores from './stores';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <Provider {...stores}>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,6 +22,7 @@ function App() {
           Learn React
         </a>
       </header>
+      </Provider>
     </div>
   );
 }
