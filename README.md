@@ -3,7 +3,7 @@ Combating the spread of misinformation on Coronavirus/ COVID-19 by providing eas
 
 Welcome!
 
-Aim of the project is to aggregate and visualize information (data points/ charts/ maps/ media content) on Coronavirus at the state and regional levels in India. This project is published as an open-source under the Apache License 2.0. The Progressive Web App is hosted at coronaviruschart.live
+Aim of the project is to aggregate and visualize information (data points/ charts/ maps/ media content) on Coronavirus at the state and regional levels in India. This project is published as an open-source under the Apache License 2.0. The Progressive Web App is hosted at www.coronaviruschart.live
 
 The primary target audience is people from non-metro cities, town and villages thereby giving the highest consideration to accessibility of information. This includes support for regional languages, minimal/ apt usage of color/ contrast, read-aloud feature, etc.
 
