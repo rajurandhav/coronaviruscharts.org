@@ -25,6 +25,6 @@ Landing page
 - Covid-19 related news snippets as text with auto-scroll left to right, sourced from news aggregators but vetted manually
 
 Map view
-- Outline map of the entire country for easy recognition, ability to zoom in/ out and pan to the state of interest to the user
+- Outline map of the entire country for easy recognition, ability to zoom in/ out and pan to the state of interest by the user
 
 x
