@@ -7,11 +7,9 @@ Aim of the project is to aggregate and visualize information (data points/ chart
 
 The primary target audience is people from non-metro cities, town and villages thereby giving the highest consideration to accessibility of information. This includes support for regional languages, minimal/ apt usage of color/ contrast, read-aloud feature, etc.
 
-Design stack 
-Adobe Illustrator, Sketch, Figma, InVision
+Design stack - Adobe Illustrator, Sketch, Figma, InVision
 
-Tech stack 
-TBD
+Tech stack - TBD
 
 
 Roadmap
