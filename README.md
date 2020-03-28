@@ -9,7 +9,7 @@ The primary target audience is people from non-metro cities, town and villages t
 
 Design stack - Adobe Illustrator, Sketch, Figma, InVision
 
-Tech stack - Node.js, JavaScript, etc.
+Tech stack - Node.js, JavaScript, etc
 
 
 Roadmap
