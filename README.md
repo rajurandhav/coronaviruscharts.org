@@ -1,68 +1,30 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# coronaviruschart.live
+Combating the spread of misinformation on Coronavirus/ COVID-19 by providing easily accessible, visually rich insights.
 
-## Available Scripts
+Welcome!
 
-In the project directory, you can run:
+Aim of the project is to aggregate and visualize information (data points/ charts/ maps/ media content) on Coronavirus at the state and regional levels in India. This project is published as an open-source under the Apache License 2.0. The Progressive Web App is hosted at www.coronaviruschart.live
 
-### `npm start`
+The primary target audience is people from non-metro cities, town and villages thereby giving the highest consideration to accessibility of information. This includes support for regional languages, minimal/ apt usage of color/ contrast, read-aloud feature, etc.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Design stack - Adobe Illustrator, Sketch, Figma, InVision
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Tech stack - Node.js, JavaScript, etc
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Roadmap
 
-### `npm run build`
+Stage I
+- Mobile-first approach
+- Two screens bifurcated as Landing page & Map view
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Landing page
+- Treemap (https://en.wikipedia.org/wiki/Treemapping)
+- Indian state-specific hierarchical data with 'infected cases' as the deciding parameter to auto-allocate screen area to each state
+- Only 6-7 states to be shown as a treemap, remaining states with datapoints will auto-scroll left to right at the bottom
+- Covid-19 related news snippets as text with auto-scroll left to right, sourced from news aggregators but vetted manually
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Map view
+- Outline map of the entire country for easy recognition, ability to zoom in/ out and pan to the state of interest by the user
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+x
