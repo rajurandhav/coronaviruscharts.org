@@ -1,3 +1,3 @@
-export * from './dashboard'
-export * from './about'
 export * from './common'
+export * from './landing'
+export * from './about'

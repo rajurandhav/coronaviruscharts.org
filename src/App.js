@@ -6,7 +6,7 @@ import {
   Route
 } from "react-router-dom";
 import { stores } from './stores';
-import { WorldWideCounter, HeaderNav, About} from './modules';
+import { Landing, HeaderNav, About } from './modules';
 import './App.css';
 
 function App() {
@@ -14,18 +14,15 @@ function App() {
     <div className="App">
       <Provider {...stores}>
         <Router>
-          <header><HeaderNav/></header>
-          <header className="App-header">
-            
-              <Switch>
-                <Route path="/about">
-                  <About />
-                </Route>
-                <Route path="/">
-                  <WorldWideCounter/>
-                </Route>
-              </Switch>        
-          </header>
+          <header><HeaderNav /></header>
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/">
+              <Landing />
+            </Route>
+          </Switch>
         </Router>
       </Provider>
     </div>
