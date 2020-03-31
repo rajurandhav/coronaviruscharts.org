@@ -1,30 +1,31 @@
 import React from 'react';
-import { Provider } from 'mobx-react'
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-import { stores } from './stores';
+import { StoreProvider } from './contexts';
 import { Landing, HeaderNav, About } from './modules';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Provider {...stores}>
+      <StoreProvider>
         <Router>
           <header><HeaderNav /></header>
-          <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/">
-              <Landing />
-            </Route>
-          </Switch>
+          <div className='main-pane'>
+            <Switch>
+              <Route path="/about">
+                <About />
+              </Route>
+              <Route path="/">
+                <Landing />
+              </Route>
+            </Switch>
+          </div>
         </Router>
-      </Provider>
+      </StoreProvider>
     </div>
   );
 }

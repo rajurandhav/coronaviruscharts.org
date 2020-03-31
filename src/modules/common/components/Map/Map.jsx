@@ -1,35 +1,34 @@
-import React, { useRef, useEffect, useState } from "react";
-import { select } from "d3";
+import React, { useRef, useEffect } from "react";
+import { select, geoPath, geoMercator } from "d3";
+import { toJS } from "mobx";
+import "./Map.css";
 
-export const Map = () => {
-  const [data, setData] = useState([25, 30, 45, 60, 20]);
+export const Map = ({ mapData, geoData, height, width }) => {
   const svgRef = useRef();
 
   useEffect(() => {
     const svg = select(svgRef.current);
+    const projection = geoMercator().fitSize([width, height], geoData);
+    const pathGenerator = geoPath().projection(projection);
+    console.log(geoData.features);
     svg
-      .selectAll("circle")
-      .data(data)
-      .join(
-        enter => enter.append("circle"),
-        update => update.attr("class", "updates"),
-        exit => exit.remove()
-      )
-      .attr("r", value => value)
-      .attr("cx", value => value * 2)
-      .attr("cy", value => value * 2)
-      .attr("stroke", "red");
-  }, [data]);
+      .selectAll(".states")
+      .data(geoData.features)
+      .join("path")
+      .attr("class", "states")
+      .attr("d", feature => pathGenerator(feature));
+  }, [geoData]);
 
   return (
-    <>
-      <button onClick={() => setData(data.map(item => item + 5))}>
-        Update
-      </button>
-      <button onClick={() => setData(data.filter(item => item <= 30))}>
-        Filter
-      </button>
-      <svg ref={svgRef}></svg>
-    </>
+    <div>
+      <svg
+        id="chart"
+        width={width}
+        height={height}
+        viewBox="0 0 500 500"
+        preserveAspectRatio="xMidYMid meet"
+        ref={svgRef}
+      ></svg>
+    </div>
   );
 };

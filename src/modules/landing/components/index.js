@@ -1,1 +1,1 @@
-export * from './IndiaMap'
+export * from './RegionMap'

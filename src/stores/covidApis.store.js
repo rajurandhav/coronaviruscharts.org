@@ -1,21 +1,31 @@
 import axios from 'axios';
 import { observable, action } from 'mobx'
+import { AppConfig } from '../modules'
+import * as topojson from "topojson-client";
 
 export class CoronaTracker {
-    @observable indiaCount = null
-    @observable counter = 0
+    @observable stateWiseCount = null
+    @observable districtWiseCount = null
+    @observable geoData = null
 
-    @action
-    getIndiaCount  = async () => {
-        const { data } = await axios.get("https://api.rootnet.in/covid19-in/stats/latest")
-        this.indiaCount = data.data
+    @action getStateWiseCount = async () => {
+        const { data } = await axios.get(`${AppConfig.apiBaseUrl}/data.json`)
+        this.stateWiseCount = data.statewise
     }
-    @action
-    incrementCount = () => {
-        this.counter = this.counter + 1
+
+    @action getDistrictWiseCount = async () => {
+        const { data } = await axios.get(`${AppConfig.apiBaseUrl}/state_district_wise.json`)
+        this.districtWiseData = data
     }
-    @action
-    decrementCount = () => {
-        this.counter = this.counter - 1
+
+    @action getTopoDataForRegion = async (viewObject) => {
+        const { data } = await axios.get(viewObject.geoDataFile)
+        this.geoData = data
+        // if (data) {
+        //     this.geoData = topojson.feature(data, data.objects[viewObject.graphObjectName])
+        // } else {
+        //     this.geoData = null
+        // }
+
     }
 }

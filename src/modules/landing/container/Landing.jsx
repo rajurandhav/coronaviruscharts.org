@@ -1,8 +1,27 @@
-import React from 'react';
-import { IndiaMap } from '../components/IndiaMap';
+import React from "react";
+import { useStore } from "../../../contexts";
+import { RegionMap } from "../components/RegionMap";
+import { useEffect } from "react";
 
 export const Landing = () => {
-    return (  
-        <IndiaMap></IndiaMap>
-    );
-}
+  const {
+    coronaTraker: {
+      getStateWiseCount,
+      getDistrictWiseCount,
+      stateWiseCount,
+      districtWiseCount
+    }
+  } = useStore();
+
+  useEffect(() => {
+    getStateWiseCount();
+    getDistrictWiseCount();
+  }, []);
+
+  return (
+    <RegionMap
+      stateWiseCount={stateWiseCount}
+      districtWiseCount={districtWiseCount}
+    ></RegionMap>
+  );
+};
