@@ -9,7 +9,9 @@ export const Map = ({
   height,
   width,
   mapType,
-  colorScale
+  colorScale,
+  onRegionClick,
+  view
 }) => {
   const svgRef = useRef();
 
@@ -26,12 +28,18 @@ export const Map = ({
       .attr("d", feature => pathGenerator(feature))
       .attr("fill", feature => {
         const keyInGeoData = propertyFieldMap[mapType];
-        const stateName = feature.properties[keyInGeoData];
-        const selectedState =
-          mapData && mapData.find(state => state.state === stateName);
+        const regionName = feature.properties[keyInGeoData];
+        const regionData = mapData
+          ? mapData.find(region => region.name === regionName)
+          : [];
         return colorScale
-          ? colorScale(selectedState && selectedState.confirmed * 100)
-          : undefined;
+          ? colorScale(regionData && regionData.confirmed ? regionData.confirmed * 100 : 0)
+          : "rgb(255,250,250)";
+      })
+      .on("click", feature => {
+        const keyInGeoData = propertyFieldMap[mapType];
+        const regionName = feature.properties[keyInGeoData];
+        onRegionClick(regionName);
       });
   }, [geoData, mapData]);
 

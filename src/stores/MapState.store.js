@@ -2,13 +2,16 @@ import { observable, action, computed } from 'mobx'
 import { mapMeta } from '../modules/common/constants'
 
 export class MapState {
-    @observable viewKey = mapMeta['India'].name
+    view = 'state'
+    @observable regionName = 'India'
 
-    @action setView = (view) => {
-        this.viewKey = view
+    @action setView = (regionName) => {
+        this.view = 'district'
+        this.regionName = regionName
     }
 
     @computed get viewObject() {
-        return mapMeta[this.viewKey]
+        const obj = mapMeta[this.regionName]
+        return obj
     }
 }

@@ -10,7 +10,7 @@ import memoizeOne from "memoize-one";
 import "./RegionMap.css";
 
 const getGeoJSON = memoizeOne((geoData, viewObject) => {
-  return geoData
+  return geoData && viewObject && geoData.objects[viewObject.graphObjectName]
     ? topojson.feature(
         geoData,
         toJS(geoData.objects[viewObject.graphObjectName])
@@ -32,27 +32,38 @@ const getGeoColorScale = memoizeOne(stateWiseCount => {
 
 export const RegionMap = observer(({ stateWiseCount, districtWiseCount }) => {
   const {
-    mapState: { viewObject },
+    mapState: { view, regionName, viewObject, setView },
     coronaTraker: { geoData, getTopoDataForRegion }
   } = useStore();
 
   useEffect(() => {
-    getTopoDataForRegion(viewObject);
+    if (viewObject) {
+      getTopoDataForRegion(viewObject);
+    }
   }, [viewObject]);
 
+  console.log(districtWiseCount)
   const corData = getGeoJSON(geoData, viewObject);
-  const colorScale = getGeoColorScale(stateWiseCount);
+  const colorScale = getGeoColorScale(
+    regionName === "India" ? stateWiseCount : districtWiseCount[regionName]
+  );
 
   return (
     <div className={"r-map-container"}>
       {corData && (
         <Map
           mapType={viewObject.mapType}
+          onRegionClick={setView}
           colorScale={colorScale}
           className={"r-map"}
+          view={view}
           height={500}
           width={500}
-          mapData={toJS(stateWiseCount)}
+          mapData={
+            regionName === "India"
+              ? toJS(stateWiseCount)
+              : toJS(districtWiseCount[regionName])
+          }
           geoData={corData}
         ></Map>
       )}
