@@ -1,9 +1,10 @@
 import React from "react";
 import { useStore } from "../../../contexts";
+import { observer } from "mobx-react";
 import { RegionMap } from "../components/RegionMap";
 import { useEffect } from "react";
 
-export const Landing = () => {
+export const Landing = observer(() => {
   const {
     coronaTraker: {
       getStateWiseCount,
@@ -24,4 +25,4 @@ export const Landing = () => {
       districtWiseCount={districtWiseCount}
     ></RegionMap>
   );
-};
+});
