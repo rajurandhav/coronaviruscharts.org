@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { select, geoPath, geoMercator } from "d3";
+import { select, geoPath, geoMercator, event } from "d3";
 import { propertyFieldMap } from "../../constants";
 import "./Map.css";
 
@@ -32,15 +32,27 @@ export const Map = ({
         const regionData = mapData
           ? mapData.find(region => region.name === regionName)
           : [];
-        return colorScale
-          ? colorScale(regionData && regionData.confirmed ? regionData.confirmed * 100 : 0)
+        return regionData && regionData.confirmed
+          ? colorScale(regionData.confirmed)
           : "rgb(255,250,250)";
       })
       .on("click", feature => {
         const keyInGeoData = propertyFieldMap[mapType];
         const regionName = feature.properties[keyInGeoData];
         onRegionClick(regionName);
-      });
+      })
+      // .on("mouseover", d => {
+      //   const target = event.target;
+      //   console.log(target)
+      //   select(target).attr(
+      //     "class",
+      //     "map-hover"
+      //   );
+      // })
+      // .on("mouseleave", d => {
+      //   const target = event.target;
+      //   select(target).attr("class", "map-default");
+      // });
   }, [geoData, mapData]);
 
   return (

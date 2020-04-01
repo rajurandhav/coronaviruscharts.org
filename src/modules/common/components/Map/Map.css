@@ -1,4 +1,9 @@
 .states {
   stroke-width: 1px;
-  stroke: white;
+  stroke: wheat;
 }
+
+path.map-hove {
+  stroke-width: 4px;
+}
+

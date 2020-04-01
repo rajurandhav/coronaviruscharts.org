@@ -18,13 +18,14 @@ const getGeoJSON = memoizeOne((geoData, viewObject) => {
     : null;
 });
 
-const getGeoColorScale = memoizeOne(stateWiseCount => {
-  if (stateWiseCount && stateWiseCount.length) {
-    const minProp = min(stateWiseCount, state => state["confirmed"] * 20);
-    const maxProp = max(stateWiseCount, state => state["confirmed"] * 20);
+const getGeoColorScale = memoizeOne(data => {
+  if (data && data.length) {
+    const minProp = min(data, state => state["confirmed"]);
+    const maxProp = max(data, state => state["confirmed"]);
+    console.log(minProp, maxProp);
     return scaleLinear()
       .domain([minProp, maxProp])
-      .range(["#ccc", "red"]);
+      .range(["rgb(255,250,250)", "#FF0000"]);
   } else {
     return null;
   }
@@ -42,7 +43,6 @@ export const RegionMap = observer(({ stateWiseCount, districtWiseCount }) => {
     }
   }, [viewObject]);
 
-  console.log(districtWiseCount)
   const corData = getGeoJSON(geoData, viewObject);
   const colorScale = getGeoColorScale(
     regionName === "India" ? stateWiseCount : districtWiseCount[regionName]
