@@ -21,7 +21,9 @@ export const Landing = observer(() => {
 
   return (
     <RegionMap
-      stateWiseCount={stateWiseCount}
+      stateWiseCount={
+        stateWiseCount && stateWiseCount.slice(1, stateWiseCount.length)
+      }
       districtWiseCount={districtWiseCount}
     ></RegionMap>
   );

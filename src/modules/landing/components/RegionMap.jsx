@@ -20,9 +20,8 @@ const getGeoJSON = memoizeOne((geoData, viewObject) => {
 
 const getGeoColorScale = memoizeOne(data => {
   if (data && data.length) {
-    const minProp = min(data, state => state["confirmed"]);
-    const maxProp = max(data, state => state["confirmed"]);
-    console.log(minProp, maxProp);
+    const minProp = min(data, state => parseInt(state.confirmed, 10));
+    const maxProp = max(data, state => parseInt(state.confirmed, 10));
     return scaleLinear()
       .domain([minProp, maxProp])
       .range(["rgb(255,250,250)", "#FF0000"]);

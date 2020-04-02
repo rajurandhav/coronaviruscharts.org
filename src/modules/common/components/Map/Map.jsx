@@ -33,7 +33,7 @@ export const Map = ({
           ? mapData.find(region => region.name === regionName)
           : [];
         return regionData && regionData.confirmed
-          ? colorScale(regionData.confirmed)
+          ? colorScale(parseInt(regionData.confirmed, 10))
           : "rgb(255,250,250)";
       })
       .on("click", feature => {
@@ -41,18 +41,15 @@ export const Map = ({
         const regionName = feature.properties[keyInGeoData];
         onRegionClick(regionName);
       })
-      // .on("mouseover", d => {
-      //   const target = event.target;
-      //   console.log(target)
-      //   select(target).attr(
-      //     "class",
-      //     "map-hover"
-      //   );
-      // })
-      // .on("mouseleave", d => {
-      //   const target = event.target;
-      //   select(target).attr("class", "map-default");
-      // });
+      .on("mouseover", d => {
+        const target = event.target;
+        console.log(target);
+        select(target).attr("class", "map-hover");
+      })
+      .on("mouseleave", d => {
+        const target = event.target;
+        select(target).attr("class", "states");
+      });
   }, [geoData, mapData]);
 
   return (

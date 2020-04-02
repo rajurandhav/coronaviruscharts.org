@@ -1,9 +1,9 @@
 .states {
   stroke-width: 1px;
-  stroke: wheat;
+  stroke: gray;
 }
 
-path.map-hove {
-  stroke-width: 4px;
+.map-hover {
+  stroke-width: 2px;
+  stroke:  gray;
 }
-
