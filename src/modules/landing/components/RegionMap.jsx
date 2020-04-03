@@ -1,14 +1,14 @@
 import React from "react";
 import { useStore } from "../../../contexts";
-import { Map } from "../../common";
+import { Map, CounterStrip } from "../../common";
 import { min, max, scaleLinear } from "d3";
 import { useEffect } from "react";
 import { toJS } from "mobx";
 import { observer } from "mobx-react";
 import * as topojson from "topojson-client";
 import memoizeOne from "memoize-one";
+import { AutoSizer } from "react-virtualized";
 import "./RegionMap.css";
-import { propertyFieldMap } from "../../common/constants";
 
 const getGeoJSON = memoizeOne((geoData, viewObject) => {
   return geoData && viewObject && geoData.objects[viewObject.graphObjectName]
@@ -19,8 +19,8 @@ const getGeoJSON = memoizeOne((geoData, viewObject) => {
     : null;
 });
 
-const isStateView = (regionName) => {
-  return regionName === "India";
+const isCountryView = regionName => {
+  return regionName === "country";
 };
 
 const getGeoColorScale = memoizeOne(data => {
@@ -35,42 +35,80 @@ const getGeoColorScale = memoizeOne(data => {
   }
 });
 
-export const RegionMap = observer(({ stateWiseCount, districtWiseCount }) => {
-  const {
-    mapState: { view, regionName, viewObject, setView },
-    coronaTraker: { geoData, getTopoDataForRegion }
-  } = useStore();
+export const RegionMap = observer(
+  ({ stateWiseCount, districtWiseCount, indiaCount }) => {
+    const {
+      mapState: {
+        view,
+        geoRegion,
+        district,
+        geoDataKey,
+        viewObject,
+        setStateView,
+        setDistrictView,
+        setCountryView,
+        regionData
+      },
+      coronaTraker: { geoData, getTopoDataForRegion }
+    } = useStore();
 
-  useEffect(() => {
-    if (viewObject) {
-      getTopoDataForRegion(viewObject);
-    }
-  }, [viewObject]);
+    useEffect(() => {
+      if (geoDataKey) {
+        getTopoDataForRegion(viewObject);
+      }
+    }, [geoDataKey, getTopoDataForRegion]);
 
-  const corData = getGeoJSON(geoData, viewObject);
-  const viewConf = propertyFieldMap[view]
-  const colorScale = getGeoColorScale(
-    isStateView(regionName) ? stateWiseCount : districtWiseCount[regionName]
-  );
+    const corData = getGeoJSON(geoData, viewObject);
+    const colorScale = getGeoColorScale(
+      isCountryView(view) ? stateWiseCount : districtWiseCount[geoRegion]
+    );
 
-  return (
-    <div className={"r-map-container"}>
-      {corData && (
-        <Map
-          onRegionClick={isStateView(regionName) && setView}
-          colorScale={colorScale}
-          className={"r-map"}
-          keyToPickFromGeoData={viewConf.keyToGeoData}
-          height={viewConf.height}
-          width={viewConf.width}
-          mapData={
-            isStateView(regionName)
-              ? toJS(stateWiseCount)
-              : toJS(districtWiseCount[regionName])
-          }
-          geoData={corData}
-        ></Map>
-      )}
-    </div>
-  );
-});
+    return (
+      <>
+        <CounterStrip
+          regionName={"India"}
+          recovered={indiaCount.recovered}
+          active={indiaCount.active}
+          died={indiaCount.deaths}
+          onClickHandler={setCountryView}
+        ></CounterStrip>
+        {regionData &&
+          regionData.map(item => {
+            return (
+              <CounterStrip
+                key={item ? item.displayName : district}
+                regionName={item ? item.displayName : district}
+                recovered={item?.recovered??0}
+                active={item?.active??0}
+                died={item?.deaths??0}
+              ></CounterStrip>
+            );
+          })}
+        <AutoSizer>
+          {({ height, width }) => {
+            return (
+              corData && (
+                <div style={{ width, height }}>
+                  <Map
+                    onRegionClick={isCountryView(view) ? setStateView : setDistrictView}
+                    colorScale={colorScale}
+                    className={"r-map"}
+                    keyToPickFromGeoData={geoDataKey}
+                    height={isCountryView(view) ? 500 : 500}
+                    width={isCountryView(view) ? width : width - 50}
+                    mapData={
+                      isCountryView(view)
+                        ? toJS(stateWiseCount)
+                        : toJS(districtWiseCount[geoRegion])
+                    }
+                    geoData={corData}
+                  ></Map>
+                </div>
+              )
+            );
+          }}
+        </AutoSizer>
+      </>
+    );
+  }
+);

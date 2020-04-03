@@ -1,18 +1,5 @@
 import { AppConfig } from '../../conf'
 
-export const propertyFieldMap = {
-    India: {
-        keyToGeoData: 'st_nm',
-        width: 450,
-        height: 450
-    },
-    state: {
-        keyToGeoData: 'district',
-        width: 400,
-        height: 400
-    },
-};
-
 export const mapMeta = {
     India: {
         name: 'India',
@@ -214,3 +201,4 @@ export const mapMeta = {
         graphObjectName: 'westbengal_district',
     },
 };
+

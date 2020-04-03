@@ -1,17 +1,37 @@
-import { observable, action, computed } from 'mobx'
+import { observable, action, computed, toJS } from 'mobx'
 import { mapMeta } from '../modules/common/constants'
 
 export class MapState {
-    view = 'India'
-    @observable regionName = 'India'
+    @observable view = 'country'
+    @observable geoDataKey = 'st_nm'
+    @observable geoRegion = 'India'
+    @observable district = ''
+    @observable regionData = []
 
-    @action setView = (regionName) => {
+    @action setCountryView = () => {
+        this.view = 'country'
+        this.geoDataKey = 'st_nm'
+        this.geoRegion = 'India'
+        this.regionData = []
+    }
+
+    @action setStateView = (regionData, regionName) => {
         this.view = 'state'
-        this.regionName = regionName
+        this.geoDataKey = 'district'
+        this.geoRegion = regionName
+        this.regionData.push(regionData)
+        this.regionData = [...this.regionData]
+    }
+
+    @action setDistrictView = (regionData, regionName) => {
+        this.view = 'district'
+        this.district = regionName
+        this.regionData[1] = regionData
+        this.regionData = [...this.regionData]
     }
 
     @computed get viewObject() {
-        const obj = mapMeta[this.regionName]
+        const obj = mapMeta[this.geoRegion]
         return obj
     }
 }

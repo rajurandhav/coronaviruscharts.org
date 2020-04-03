@@ -15,7 +15,7 @@ export const Map = ({
 
   useEffect(() => {
     const svg = select(svgRef.current);
-    const projection = geoMercator().fitSize([width, height], geoData);
+    const projection = geoMercator().fitExtent([[0, 0], [width, height]], geoData);
     const pathGenerator = geoPath().projection(projection);
 
     svg
@@ -36,7 +36,10 @@ export const Map = ({
       .on("click", feature => {
         if (!onRegionClick) return;
         const regionName = feature.properties[keyToPickFromGeoData];
-        onRegionClick(regionName);
+        const regionData = mapData
+        ? mapData.find(region => region.name === regionName)
+        : [];
+        onRegionClick(regionData, regionName);
       })
       .on("mouseover", d => {
         const target = event.target;
@@ -46,15 +49,23 @@ export const Map = ({
         const target = event.target;
         select(target).attr("class", "states");
       });
-  }, [geoData, mapData]);
+  }, [
+    geoData,
+    mapData,
+    colorScale,
+    height,
+    width,
+    keyToPickFromGeoData,
+    onRegionClick
+  ]);
 
   return (
-    <div>
+    <div className="map-container">
       <svg
         id="chart"
         width={width}
         height={height}
-        viewBox="0 0 500 500"
+        viewBox={`0 0 ${width} ${height}`}
         preserveAspectRatio="xMidYMid meet"
         ref={svgRef}
       ></svg>

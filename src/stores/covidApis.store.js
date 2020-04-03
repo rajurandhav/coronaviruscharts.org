@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { observable, action, toJS } from 'mobx'
+import { observable, action } from 'mobx'
 import { AppConfig } from '../modules'
 
 export class CoronaTracker {
@@ -11,7 +11,8 @@ export class CoronaTracker {
         const { data } = await axios.get(`${AppConfig.apiBaseUrl}/data.json`)
         this.stateWiseCount = data.statewise.map(state => ({
             ...state,
-            name: state.state
+            name: state.state,
+            displayName: state.state.length <  10 ? state.state : state.statecode
         }))
         // console.log(toJS(this.stateWiseCount))
     }
@@ -25,6 +26,7 @@ export class CoronaTracker {
             for (let secKey in sectionData) {
                 processedData[key].push({
                     name: secKey,
+                    displayName: secKey,
                     ...sectionData[secKey]
                 })
             }
