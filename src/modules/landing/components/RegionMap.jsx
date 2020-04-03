@@ -8,6 +8,7 @@ import { observer } from "mobx-react";
 import * as topojson from "topojson-client";
 import memoizeOne from "memoize-one";
 import "./RegionMap.css";
+import { propertyFieldMap } from "../../common/constants";
 
 const getGeoJSON = memoizeOne((geoData, viewObject) => {
   return geoData && viewObject && geoData.objects[viewObject.graphObjectName]
@@ -17,6 +18,10 @@ const getGeoJSON = memoizeOne((geoData, viewObject) => {
       )
     : null;
 });
+
+const isStateView = (regionName) => {
+  return regionName === "India";
+};
 
 const getGeoColorScale = memoizeOne(data => {
   if (data && data.length) {
@@ -43,23 +48,23 @@ export const RegionMap = observer(({ stateWiseCount, districtWiseCount }) => {
   }, [viewObject]);
 
   const corData = getGeoJSON(geoData, viewObject);
+  const viewConf = propertyFieldMap[view]
   const colorScale = getGeoColorScale(
-    regionName === "India" ? stateWiseCount : districtWiseCount[regionName]
+    isStateView(regionName) ? stateWiseCount : districtWiseCount[regionName]
   );
 
   return (
     <div className={"r-map-container"}>
       {corData && (
         <Map
-          mapType={viewObject.mapType}
-          onRegionClick={setView}
+          onRegionClick={isStateView(regionName) && setView}
           colorScale={colorScale}
           className={"r-map"}
-          view={view}
-          height={500}
-          width={500}
+          keyToPickFromGeoData={viewConf.keyToGeoData}
+          height={viewConf.height}
+          width={viewConf.width}
           mapData={
-            regionName === "India"
+            isStateView(regionName)
               ? toJS(stateWiseCount)
               : toJS(districtWiseCount[regionName])
           }

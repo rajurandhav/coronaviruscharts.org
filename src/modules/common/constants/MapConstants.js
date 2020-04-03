@@ -1,8 +1,16 @@
 import { AppConfig } from '../../conf'
 
 export const propertyFieldMap = {
-    country: 'st_nm',
-    state: 'district',
+    India: {
+        keyToGeoData: 'st_nm',
+        width: 450,
+        height: 450
+    },
+    state: {
+        keyToGeoData: 'district',
+        width: 400,
+        height: 400
+    },
 };
 
 export const mapMeta = {
@@ -52,7 +60,7 @@ export const mapMeta = {
         name: 'Delhi',
         geoDataFile: `${AppConfig.baseTopo}/delhi.json`,
         mapType: 'state',
-        graphObjectName: 'delhi_1997-2012_district',
+        graphObjectName: 'delhi_district',
     },
     Karnataka: {
         name: 'Karnataka',
@@ -76,7 +84,7 @@ export const mapMeta = {
         name: 'Gujarat',
         geoDataFile: `${AppConfig.baseTopo}/gujarat.json`,
         mapType: 'state',
-        graphObjectName: 'gujarat_district_2011',
+        graphObjectName: 'gujarat_district',
     },
     Haryana: {
         name: 'Haryana',

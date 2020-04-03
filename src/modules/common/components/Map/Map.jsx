@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import { select, geoPath, geoMercator, event } from "d3";
-import { propertyFieldMap } from "../../constants";
 import "./Map.css";
 
 export const Map = ({
@@ -8,10 +7,9 @@ export const Map = ({
   geoData,
   height,
   width,
-  mapType,
   colorScale,
   onRegionClick,
-  view
+  keyToPickFromGeoData
 }) => {
   const svgRef = useRef();
 
@@ -27,8 +25,7 @@ export const Map = ({
       .attr("class", "states")
       .attr("d", feature => pathGenerator(feature))
       .attr("fill", feature => {
-        const keyInGeoData = propertyFieldMap[mapType];
-        const regionName = feature.properties[keyInGeoData];
+        const regionName = feature.properties[keyToPickFromGeoData];
         const regionData = mapData
           ? mapData.find(region => region.name === regionName)
           : [];
@@ -37,13 +34,12 @@ export const Map = ({
           : "rgb(255,250,250)";
       })
       .on("click", feature => {
-        const keyInGeoData = propertyFieldMap[mapType];
-        const regionName = feature.properties[keyInGeoData];
+        if (!onRegionClick) return;
+        const regionName = feature.properties[keyToPickFromGeoData];
         onRegionClick(regionName);
       })
       .on("mouseover", d => {
         const target = event.target;
-        console.log(target);
         select(target).attr("class", "map-hover");
       })
       .on("mouseleave", d => {

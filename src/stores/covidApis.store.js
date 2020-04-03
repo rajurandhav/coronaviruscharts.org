@@ -36,5 +36,6 @@ export class CoronaTracker {
     @action getTopoDataForRegion = async (viewObject) => {
         const { data } = await axios.get(viewObject.geoDataFile)
         this.geoData = data
+        // console.log(toJS(this.geoData))
     }
 }
