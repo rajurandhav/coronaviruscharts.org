@@ -1,5 +1,17 @@
 import { AppConfig } from '../../conf'
 
+export const geoMap = {
+    'country': {
+        name: 'India',
+        key: 'st_nm'
+    },
+    'state': {
+        name: 'state',
+        key: 'district'
+    }
+}
+
+
 export const mapMeta = {
     India: {
         name: 'India',

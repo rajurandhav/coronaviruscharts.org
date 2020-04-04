@@ -47,7 +47,7 @@
 
 .confirmed .count-val {
   font-weight: bold;
-  color: red;
+  color: orange;
 }
 
 .recovered .count-val {

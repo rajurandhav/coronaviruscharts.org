@@ -7,7 +7,7 @@ export const CounterStrip = React.memo(({
     data,
     onClickHandler
 }) => {
-    console.log(regionName)
+    // console.log(regionName)
     return (
         <div className='count-strip-container'>
             <div className='item' onClick={onClickHandler ? onClickHandler : null}>

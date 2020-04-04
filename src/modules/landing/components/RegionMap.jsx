@@ -1,6 +1,7 @@
 import React from "react";
 import { useStore } from "../../../contexts";
 import { Map, CounterStrip } from "../../common";
+import { geoMap } from "../../common/constants";
 import { min, max, scaleLinear } from "d3";
 import { useEffect } from "react";
 import { toJS } from "mobx";
@@ -8,17 +9,21 @@ import { observer } from "mobx-react";
 import * as topojson from "topojson-client";
 import memoizeOne from "memoize-one";
 import { AutoSizer } from "react-virtualized";
-import {getStatObject} from '../../services'
+import { getStatObject } from "../../services";
 import "./RegionMap.css";
 
-const getGeoJSON = memoizeOne((geoData, viewObject) => {
-  return geoData && viewObject && geoData.objects[viewObject.graphObjectName]
-    ? topojson.feature(
-        geoData,
-        toJS(geoData.objects[viewObject.graphObjectName])
-      )
-    : null;
-});
+const getGeoJSON = memoizeOne(
+  (geoData, viewObject) => {
+    return geoData && viewObject && geoData.objects[viewObject.graphObjectName]
+      ? topojson.feature(
+          geoData,
+          toJS(geoData.objects[viewObject.graphObjectName])
+        )
+      : null;
+  },
+  (oldProp, newProp) =>
+    oldProp[1].name === newProp[1].name && oldProp[0] === newProp[0]
+);
 
 const isCountryView = regionName => {
   return regionName === "country";
@@ -43,7 +48,6 @@ export const RegionMap = observer(
         view,
         geoRegion,
         district,
-        geoDataKey,
         viewObject,
         setStateView,
         setDistrictView,
@@ -53,12 +57,14 @@ export const RegionMap = observer(
       coronaTraker: { geoData, getTopoDataForRegion }
     } = useStore();
 
+    // Effect to fetch topoJSON data
     useEffect(() => {
-      if (geoDataKey) {
+      if (view) {
         getTopoDataForRegion(viewObject);
       }
-    }, [geoDataKey, viewObject, getTopoDataForRegion]);
+    }, [view, viewObject, getTopoDataForRegion]);
 
+    // Converting top JSON to GEO json
     const corData = getGeoJSON(geoData, viewObject);
     const colorScale = getGeoColorScale(
       isCountryView(view) ? stateWiseCount : districtWiseCount[geoRegion]
@@ -73,7 +79,7 @@ export const RegionMap = observer(
             recovered: indiaCount?.recovered ?? 0,
             confirmed: indiaCount?.confirmed ?? 0,
             deaths: indiaCount?.deaths ?? 0,
-            region: 'India'
+            region: "India"
           })}
           onClickHandler={setCountryView}
         ></CounterStrip>
@@ -104,7 +110,7 @@ export const RegionMap = observer(
                     }
                     colorScale={colorScale}
                     className={"r-map"}
-                    keyToPickFromGeoData={geoDataKey}
+                    keyToPickFromGeoData={geoMap[view].key}
                     height={isCountryView(view) ? 500 : 500}
                     width={isCountryView(view) ? width : width - 50}
                     mapData={
