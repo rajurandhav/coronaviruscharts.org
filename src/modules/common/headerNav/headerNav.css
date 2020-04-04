@@ -1,9 +1,24 @@
 .root {
-    flex-grow: 1
+  flex-grow: 1;
+  background-color: #F0F0F0;
 }
-.menuButton {
-    margin-right: 10
-  }
-.title {
-    flex-grow: 1
+
+.logo {
+  color: black;
+  font-weight: bold;
+}
+
+.lang {
+  font-family: sans-serif;
+  font-size: 14px;
+  color: black;
+}
+
+.logo .cause {
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.logo .seperator {
+    color: red;
 }

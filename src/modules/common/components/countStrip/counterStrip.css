@@ -2,7 +2,7 @@
   display: flex;
   border-bottom: 1px solid gray;
   justify-content: space-between;
-  padding: 3px;
+  padding-top: 10px;
 }
 
 .name {
@@ -12,9 +12,9 @@
   align-items: center;
   text-transform: uppercase;
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
-  width: 100px;
+  width: 70px;
   min-height: 50px;
 }
 
@@ -28,19 +28,24 @@
 .count-item {
   text-transform: uppercase;
   font-family: sans-serif;
-  font-size: 12px;
-  padding: 2px;
-  min-width: 60px;
-  min-height: 50px;
+  font-size: 11px;
+  padding: 5px;
+  min-width: 30px;
+  min-height: 40px;
   display: flex;
   flex-direction: column;
 }
 
 .count-val {
-  padding: 10px;
+  padding: 5px;
 }
 
 .active .count-val {
+  font-weight: bold;
+  color: red;
+}
+
+.confirmed .count-val {
   font-weight: bold;
   color: red;
 }

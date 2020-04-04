@@ -1,4 +1,4 @@
-import { observable, action, computed, toJS } from 'mobx'
+import { observable, action, computed } from 'mobx'
 import { mapMeta } from '../modules/common/constants'
 
 export class MapState {

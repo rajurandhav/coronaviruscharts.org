@@ -1,31 +1,35 @@
 import React from 'react';
 import './counterStrip.css'
+import _ from 'lodash';
+
 export const CounterStrip = React.memo(({
     regionName,
-    active,
-    recovered,
-    died,
+    data,
     onClickHandler
 }) => {
+    console.log(regionName)
     return (
         <div className='count-strip-container'>
             <div className='item' onClick={onClickHandler ? onClickHandler : null}>
                 <span className="name">{regionName}</span>
             </div>
             <div className='item count'>
-                <div className='count-item active'>
-                    <div>Active</div>
-                    <div className="count-val">{active ? active : 0}</div>
-                </div>
-                <div className='count-item recovered'>
-                    <div>Recoved</div>
-                    <div className="count-val">{recovered ? recovered : 0}</div>
-                </div>
-                <div className='count-item died'>
-                    <div>Died</div>
-                    <div className="count-val">{died ? died : 0}</div>
-                </div>
+                {
+                    data && data.map(item => {
+                        return (
+                            <div key={`regionName-${item.name}`} className={`count-item ${item.name}`}>
+                                <div>{item.name}</div>
+                                <div className="count-val">{item && item.value ? item.value : 0}</div>
+                            </div>
+                        )
+                    })
+                }
             </div>
         </div>
     );
+}, (oldProps, newProps) => {
+    return (
+        oldProps.regionName === newProps.regionName
+        && _.isEqual(oldProps, newProps)
+    )
 })

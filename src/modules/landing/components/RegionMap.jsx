@@ -8,6 +8,7 @@ import { observer } from "mobx-react";
 import * as topojson from "topojson-client";
 import memoizeOne from "memoize-one";
 import { AutoSizer } from "react-virtualized";
+import {getStatObject} from '../../services'
 import "./RegionMap.css";
 
 const getGeoJSON = memoizeOne((geoData, viewObject) => {
@@ -56,7 +57,7 @@ export const RegionMap = observer(
       if (geoDataKey) {
         getTopoDataForRegion(viewObject);
       }
-    }, [geoDataKey, getTopoDataForRegion]);
+    }, [geoDataKey, viewObject, getTopoDataForRegion]);
 
     const corData = getGeoJSON(geoData, viewObject);
     const colorScale = getGeoColorScale(
@@ -67,9 +68,13 @@ export const RegionMap = observer(
       <>
         <CounterStrip
           regionName={"India"}
-          recovered={indiaCount.recovered}
-          active={indiaCount.active}
-          died={indiaCount.deaths}
+          data={getStatObject({
+            active: indiaCount?.active ?? 0,
+            recovered: indiaCount?.recovered ?? 0,
+            confirmed: indiaCount?.confirmed ?? 0,
+            deaths: indiaCount?.deaths ?? 0,
+            region: 'India'
+          })}
           onClickHandler={setCountryView}
         ></CounterStrip>
         {regionData &&
@@ -78,9 +83,13 @@ export const RegionMap = observer(
               <CounterStrip
                 key={item ? item.displayName : district}
                 regionName={item ? item.displayName : district}
-                recovered={item?.recovered??0}
-                active={item?.active??0}
-                died={item?.deaths??0}
+                data={getStatObject({
+                  active: item?.active ?? 0,
+                  recovered: item?.recovered ?? 0,
+                  confirmed: item?.confirmed ?? 0,
+                  deaths: item?.deaths ?? 0,
+                  region: item ? item.displayName : district
+                })}
               ></CounterStrip>
             );
           })}
@@ -90,7 +99,9 @@ export const RegionMap = observer(
               corData && (
                 <div style={{ width, height }}>
                   <Map
-                    onRegionClick={isCountryView(view) ? setStateView : setDistrictView}
+                    onRegionClick={
+                      isCountryView(view) ? setStateView : setDistrictView
+                    }
                     colorScale={colorScale}
                     className={"r-map"}
                     keyToPickFromGeoData={geoDataKey}
