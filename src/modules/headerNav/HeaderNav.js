@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useStore } from "../../../contexts";
+import { useStore } from "../../contexts";
 import { observer } from 'mobx-react'
 import {
   Link
@@ -10,6 +10,7 @@ import './headerNav.css'
 
 export const HeaderNav = observer(() => {
   const {
+    drawerState: { toggleDrawer },
     utilStore:{
       setLanguage
     }
@@ -19,12 +20,13 @@ export const HeaderNav = observer(() => {
     handleChangelLang(lang);
     setLanguage(lang)
   }
+
   return (<div className='root'>
     <AppBar position="static">
       <Toolbar classes={{
         root: 'root'
       }}>
-        <IconButton edge="start" className='menuButton' color="black" aria-label="menu">
+        <IconButton edge="start" className='menuButton' color="black" aria-label="menu" onClick={toggleDrawer(true)}>
           <MenuIcon />
         </IconButton>
         <div style={{ display: 'flex', justifyContent: 'space-between', flex: 1 }}>
@@ -45,7 +47,6 @@ export const HeaderNav = observer(() => {
               disableUnderline
             >
               <MenuItem value="en">English</MenuItem>
-              <MenuItem value="hin">हिंदी</MenuItem>
               <MenuItem value="mar">मराठी</MenuItem>
             </Select>
           </div>

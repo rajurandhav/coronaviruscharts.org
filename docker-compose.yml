@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  corona-app:
+     image: sanketjoshi/coronaviruschart:dev4.0
+     ports:
+      - "3200:80"
