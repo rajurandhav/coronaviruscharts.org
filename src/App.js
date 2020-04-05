@@ -5,7 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import { StoreProvider } from './contexts';
-import { Landing, HeaderNav, About } from './modules';
+import { Landing, HeaderNav, About, SwipeableTemporaryDrawer } from './modules';
 import './App.css';
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
       <StoreProvider>
         <Router>
           <header><HeaderNav /></header>
+          <SwipeableTemporaryDrawer></SwipeableTemporaryDrawer>
           <div className='main-pane'>
             <Switch>
               <Route path="/about">

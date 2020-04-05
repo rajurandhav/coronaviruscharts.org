@@ -1,5 +1,5 @@
 import React from "react";
-import { MapState, ThemeStore, CoronaTracker } from "../stores";
+import { MapState, ThemeStore, CoronaTracker, DrawerState } from "../stores";
 import { useLocalStore } from "mobx-react"; // 6.x or mobx-react-lite@1.4.0
 
 export const storesContext = React.createContext(null);
@@ -8,7 +8,8 @@ export const StoreProvider = ({ children }) => {
   const store = useLocalStore(() => ({
     coronaTraker: new CoronaTracker(),
     themeStore: new ThemeStore(),
-    mapState: new MapState()
+    mapState: new MapState(),
+    drawerState: new DrawerState()
   }));
   return (
     <storesContext.Provider value={store}>{children}</storesContext.Provider>

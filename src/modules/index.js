@@ -1,5 +1,7 @@
 export * from './common'
 export * from './landing'
+export * from './drawer'
+export * from './headerNav'
 export * from './about'
 export * from './conf'
 export * from './services'

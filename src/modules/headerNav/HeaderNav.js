@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+import { useStore } from '../../contexts'
 import {
   Link
 } from "react-router-dom";
@@ -8,12 +9,15 @@ import MenuIcon from '@material-ui/icons/Menu'
 import './headerNav.css'
 
 export const HeaderNav = observer(() => {
+  const {
+    drawerState: { toggleDrawer }
+  } = useStore();
   return (<div className='root'>
     <AppBar position="static">
       <Toolbar classes={{
         root: 'root'
       }}>
-        <IconButton edge="start" className='menuButton' color="black" aria-label="menu">
+        <IconButton edge="start" className='menuButton' color="black" aria-label="menu" onClick={toggleDrawer(true)}>
           <MenuIcon />
         </IconButton>
         <div style={{ display: 'flex', justifyContent: 'space-between', flex: 1 }}>
