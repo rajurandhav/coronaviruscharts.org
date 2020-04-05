@@ -74,6 +74,7 @@ export const RegionMap = observer(
       <>
         <CounterStrip
           regionName={"India"}
+          backNavigator={true}
           data={getStatObject({
             active: indiaCount?.active ?? 0,
             recovered: indiaCount?.recovered ?? 0,

@@ -1,17 +1,23 @@
 import React from 'react';
 import './counterStrip.css'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import _ from 'lodash';
+import classNames from 'classnames'
 
 export const CounterStrip = React.memo(({
     regionName,
+    backNavigator,
     data,
     onClickHandler
 }) => {
     // console.log(regionName)
     return (
-        <div className='count-strip-container'>
-            <div className='item' onClick={onClickHandler ? onClickHandler : null}>
-                <span className="name">{regionName}</span>
+        <div className={classNames({ 'count-strip-container': true, 'nav-strip': backNavigator })}>
+            <div className='item name-container' onClick={onClickHandler ? onClickHandler : null}>
+                <span className="name">
+                    {backNavigator && <ArrowBackIosIcon className="icon" size={10} fontSize="small"></ArrowBackIosIcon>}
+                    {regionName}
+                </span>
             </div>
             <div className='item count'>
                 {

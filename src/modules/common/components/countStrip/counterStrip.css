@@ -5,6 +5,14 @@
   padding-top: 10px;
 }
 
+.nav-strip {
+  background-color: #F0F0F0;
+}
+
+.icon {
+  padding: 5px;
+}
+
 .name {
   padding: 2px;
   cursor: pointer;
@@ -40,12 +48,12 @@
   padding: 5px;
 }
 
-.active .count-val {
+.confirmed .count-val {
   font-weight: bold;
   color: red;
 }
 
-.confirmed .count-val {
+.active .count-val {
   font-weight: bold;
   color: orange;
 }
