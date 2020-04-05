@@ -1,7 +1,7 @@
 import React from "react";
 import { useStore } from "../../../contexts";
 import { Map, CounterStrip } from "../../common";
-import { geoMap } from "../../common/constants";
+import { geoMap, STRIPHEIGHT, MAPCONTAINERPADDING } from "../../common/constants";
 import { min, max, scaleLinear } from "d3";
 import { useEffect } from "react";
 import { toJS } from "mobx";
@@ -102,9 +102,15 @@ export const RegionMap = observer(
           })}
         <AutoSizer>
           {({ height, width }) => {
+            const correctedHeight =
+              height - (STRIPHEIGHT + regionData.length * STRIPHEIGHT + MAPCONTAINERPADDING);
+            const correctedWidth = width - MAPCONTAINERPADDING;
             return (
               corData && (
-                <div style={{ width, height }}>
+                <div
+                  className="rgn-map-container"
+                  style={{ width: correctedWidth, height: correctedHeight }}
+                >
                   <Map
                     onRegionClick={
                       isCountryView(view) ? setStateView : setDistrictView
@@ -112,8 +118,8 @@ export const RegionMap = observer(
                     colorScale={colorScale}
                     className={"r-map"}
                     keyToPickFromGeoData={geoMap[view].key}
-                    height={isCountryView(view) ? 500 : 500}
-                    width={isCountryView(view) ? width : width - 50}
+                    height={correctedHeight}
+                    width={correctedWidth}
                     mapData={
                       isCountryView(view)
                         ? toJS(stateWiseCount)

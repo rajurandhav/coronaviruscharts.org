@@ -1,5 +1,8 @@
 import { AppConfig } from '../../conf'
 
+export const STRIPHEIGHT = 65;
+export const MAPCONTAINERPADDING = 40
+
 export const geoMap = {
     'country': {
         name: 'India',
