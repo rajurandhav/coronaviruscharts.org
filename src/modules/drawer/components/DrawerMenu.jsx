@@ -14,7 +14,6 @@ import { observer } from "mobx-react";
 const useStyles = makeStyles({
   list: {
     width: 450,
-    width: "auto",
     height: '100%',
     backgroundColor: '#F0F0F0',
     paddingTop: 10
