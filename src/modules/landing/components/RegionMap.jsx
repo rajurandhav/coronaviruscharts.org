@@ -10,6 +10,7 @@ import * as topojson from "topojson-client";
 import memoizeOne from "memoize-one";
 import { AutoSizer } from "react-virtualized";
 import { getStatObject } from "../../services";
+import { useTranslation } from 'react-i18next'
 import "./RegionMap.css";
 
 const getGeoJSON = memoizeOne(
@@ -63,7 +64,7 @@ export const RegionMap = observer(
         getTopoDataForRegion(viewObject);
       }
     }, [view, viewObject, getTopoDataForRegion]);
-
+    const { t } = useTranslation();
     // Converting top JSON to GEO json
     const corData = getGeoJSON(geoData, viewObject);
     const colorScale = getGeoColorScale(
@@ -73,7 +74,7 @@ export const RegionMap = observer(
     return (
       <>
         <CounterStrip
-          regionName={"India"}
+          regionName={t("India")}
           data={getStatObject({
             active: indiaCount?.active ?? 0,
             recovered: indiaCount?.recovered ?? 0,

@@ -1,13 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useStore } from "../../../contexts";
 import { observer } from 'mobx-react'
 import {
   Link
 } from "react-router-dom";
-import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core'
+import { AppBar, Toolbar, IconButton, Typography, Select, MenuItem } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import './headerNav.css'
 
 export const HeaderNav = observer(() => {
+  const {
+    utilStore:{
+      setLanguage
+    }
+  } = useStore();
+  const [lang, handleChangelLang,] = useState('en')
+  const changeLang = (lang) => {
+    handleChangelLang(lang);
+    setLanguage(lang)
+  }
   return (<div className='root'>
     <AppBar position="static">
       <Toolbar classes={{
@@ -25,9 +36,19 @@ export const HeaderNav = observer(() => {
               <span className="mode">live</span>
             </Link>
           </Typography>
-          <Link className="lang" to="/">
-            English
-          </Link>
+          <div className="lang">
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={lang}
+              onChange={e=>changeLang(e.target.value)}
+              disableUnderline
+            >
+              <MenuItem value="en">English</MenuItem>
+              <MenuItem value="hin">हिंदी</MenuItem>
+              <MenuItem value="mar">मराठी</MenuItem>
+            </Select>
+          </div>
         </div>
       </Toolbar>
     </AppBar>
