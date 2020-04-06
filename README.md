@@ -1,4 +1,5 @@
 # coronaviruschart.live
+![Deploy to Github Pages](https://github.com/rajurandhav/coronaviruscharts.org/workflows/Deploy%20to%20Github%20Pages/badge.svg?branch=master)
 Combating the spread of misinformation on Coronavirus/ COVID-19 by providing easily accessible, visually rich insights.
 
 Welcome!
