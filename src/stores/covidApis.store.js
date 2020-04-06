@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { observable, action, toJS } from 'mobx'
+import { observable, action } from 'mobx'
 import { AppConfig } from '../modules'
 
 export class CoronaTracker {

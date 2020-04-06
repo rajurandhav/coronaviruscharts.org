@@ -1,7 +1,6 @@
 import React from "react";
 import { useStore } from "../../../contexts";
 import { observer } from "mobx-react";
-import { toJS } from "mobx";
 import { RegionMap } from "../components/RegionMap";
 import { useEffect } from "react";
 import { getProcessedStateStats } from "../../services";
