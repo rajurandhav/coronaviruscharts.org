@@ -81,6 +81,8 @@ export const RegionMap = observer(
             recovered: indiaCount?.recovered ?? 0,
             confirmed: indiaCount?.confirmed ?? 0,
             deaths: indiaCount?.deaths ?? 0,
+            totalHospitals: indiaCount?.totalHospitals ?? 0,
+            totalBeds: indiaCount?.totalBeds ?? 0,
             region: "India"
           })}
           onClickHandler={setCountryView}
@@ -96,6 +98,8 @@ export const RegionMap = observer(
                   recovered: item?.recovered ?? 0,
                   confirmed: item?.confirmed ?? 0,
                   deaths: item?.deaths ?? 0,
+                  totalHospitals: item?.totalHospitals ?? 0,
+                  totalBeds: item?.totalBeds ?? 0,
                   region: item ? item.displayName : district
                 })}
               ></CounterStrip>

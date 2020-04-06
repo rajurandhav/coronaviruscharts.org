@@ -1,6 +1,6 @@
 {
       "India": "भारत",
-      "MH": "महाराष्ट्र",
+      "Maharashtra": "महाराष्ट्र",
       "Andaman and Nicobar Islands": "अंदमान निकोबर बेट",
       "Arunachal Pradesh":"अरुणाचल प्रदेश",
       "Andhra Pradesh":"आंध्र प्रदेश",
@@ -17,7 +17,6 @@
       "Jharkhand":"झारखंड",
       "Ladakh":"लदाख",
       "Madhya Pradesh": "मध्यप्रदेश",
-      "Maharashtra":"Maharashtra",
       "Manipur":"मणिपूर",
       "Meghalaya":"मेघालय",
       "Mizoram":"मिझोराम",
@@ -35,5 +34,7 @@
       "active": "संक्रमित",
       "confirmed": "उद्वारीत",
       "died": "मृत",
-      "recovered": "बरे झाले"
+      "recovered": "बरे झाले",
+      "hospitals": "इस्पितळं",
+      "beds": "बिछाने/खाट"
   }

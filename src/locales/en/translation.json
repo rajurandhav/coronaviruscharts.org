@@ -1,10 +1,10 @@
 {
     "India": "India",
-    "MH": "Maharashtra",
+    "Maharashtra": "Maharashtra",
     "active": "Active",
     "confirmed": "Confirmed",
-    "died": "Dead",
-    "recovered" :"Reconvered",
+    "died": "Deceased",
+    "recovered" :"Recovered",
     "Andaman and Nicobar Islands": "Andaman and Nicobar Islands",
     "Arunachal Pradesh":"Arunachal Pradesh",
     "Andhra Pradesh":"Andhra Pradesh",
@@ -21,7 +21,6 @@
     "Jharkhand":"Jharkhand",
     "Ladakh":"Ladakh",
     "Madhya Pradesh": "Madhya Pradesh",
-    "Maharashtra":"Maharashtra",
     "Manipur":"Manipur",
     "Meghalaya":"Meghalaya",
     "Mizoram":"Mizoram",
@@ -35,5 +34,7 @@
     "Tripura":"Tripura",
     "Uttarakhand":"Uttarakhand",
     "Uttar Pradesh":"Uttar Pradesh",
-    "West Bengal":"West Bengal"
+    "West Bengal":"West Bengal",
+    "hospitals": "Hospitals",
+    "beds": "Beds"
   }
