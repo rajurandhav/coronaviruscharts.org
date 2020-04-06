@@ -10,7 +10,7 @@ export const getProcessedStateStats = memoizeOne((stateWiseCount, bedCounts) => 
         let selectedStatState = stateWiseCount[i]?.name ?? undefined
         if (selectedStatState) {
             let bedData = bedCounts.find(state => {
-                if (selectedStatState= 'Total') {
+                if (selectedStatState === 'Total') {
                     return state.state === 'INDIA'
                 } else {
                     return state.state === selectedStatState
