@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 import { toJS } from "mobx";
 import { RegionMap } from "../components/RegionMap";
 import { useEffect } from "react";
+import { getProcessedStateStats } from "../../services";
 import "./Landing.css";
 
 export const Landing = observer(() => {
@@ -11,7 +12,9 @@ export const Landing = observer(() => {
     coronaTraker: {
       getStateWiseCount,
       getDistrictWiseCount,
+      getBedCounts,
       stateWiseCount,
+      bedCounts,
       districtWiseCount
     }
   } = useStore();
@@ -19,15 +22,17 @@ export const Landing = observer(() => {
   useEffect(() => {
     getStateWiseCount();
     getDistrictWiseCount();
-  }, [getStateWiseCount, getDistrictWiseCount]);
+    getBedCounts();
+  }, [getStateWiseCount, getDistrictWiseCount, getBedCounts]);
 
+  const stateWiseCountStat = getProcessedStateStats(stateWiseCount, bedCounts);
   return (
     <div className="landingContainer">
       <div>
         <RegionMap
-          indiaCount={stateWiseCount ? toJS(stateWiseCount[0]) : {}}
+          indiaCount={stateWiseCountStat ? stateWiseCountStat[0] : {}}
           stateWiseCount={
-            stateWiseCount && stateWiseCount.slice(1, stateWiseCount.length)
+            stateWiseCountStat && stateWiseCountStat.slice(1, stateWiseCountStat.length)
           }
           districtWiseCount={districtWiseCount}
         ></RegionMap>
