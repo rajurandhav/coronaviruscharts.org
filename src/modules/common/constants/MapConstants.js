@@ -1,6 +1,6 @@
 import { AppConfig } from '../../conf'
 
-export const STRIPHEIGHT = 65;
+export const STRIPHEIGHT = 80;
 export const MAPCONTAINERPADDING = 40
 
 export const geoMap = {

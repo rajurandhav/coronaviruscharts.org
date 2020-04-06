@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx'
+import { observable, action, computed, toJS } from 'mobx'
 import { mapMeta } from '../modules/common/constants'
 
 export class MapState {
@@ -17,6 +17,7 @@ export class MapState {
         this.view = 'state'
         this.geoRegion = regionName
         this.regionData.push(regionData)
+        console.log(toJS(this.regionData))
         this.regionData = [...this.regionData]
     }
 
