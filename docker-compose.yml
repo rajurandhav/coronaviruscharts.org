@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  corona-app:
+     image: coronaviruschart/dev:latest
+     ports:
+      - "80:80"

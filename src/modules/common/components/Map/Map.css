@@ -1,0 +1,12 @@
+.map-container {
+}
+
+.states {
+  stroke-width: 1px;
+  stroke: gray;
+}
+
+.map-hover {
+  stroke-width: 2px;
+  stroke:  gray;
+}

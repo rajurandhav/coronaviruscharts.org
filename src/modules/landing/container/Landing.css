@@ -1,0 +1,10 @@
+.landingContainer {
+    width: 100%;
+    display: flex;
+    margin: 20px;
+    justify-content: center;
+}
+
+.landingContainer > div {
+    width: 100%
+}
