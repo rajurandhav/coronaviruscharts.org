@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { observable, action } from 'mobx'
+import { observable, action, toJS } from 'mobx'
 import { AppConfig } from '../modules'
 
 export class CoronaTracker {
     @observable stateWiseCount = null
     @observable districtWiseCount = null
+    @observable bedCounts = null
     @observable geoData = null
 
     @action getStateWiseCount = async () => {
@@ -12,7 +13,7 @@ export class CoronaTracker {
         this.stateWiseCount = data.statewise.map(state => ({
             ...state,
             name: state.state,
-            displayName: state.state.length <  10 ? state.state : state.statecode
+            displayName: state.state
         }))
         // console.log(toJS(this.stateWiseCount))
     }
@@ -33,6 +34,13 @@ export class CoronaTracker {
         }
         this.districtWiseCount = processedData
         // console.log(toJS(this.districtWiseCount))
+    }
+
+
+    @action getBedCounts = async () => {
+        const { data } = await axios.get(`${AppConfig.apiRootBaseUrl}/stats/hospitals`)
+        // console.log(data.data.regional)
+        this.bedCounts = data?.data?.regional??[]
     }
 
     @action getTopoDataForRegion = async (viewObject) => {

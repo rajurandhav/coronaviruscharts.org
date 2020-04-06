@@ -2,15 +2,33 @@
   display: flex;
   border-bottom: 1px solid gray;
   justify-content: space-between;
-  padding-top: 10px;
+  padding-top: 5px;
+  flex-direction: column;
 }
 
 .nav-strip {
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 
 .icon {
   padding: 2px;
+}
+
+.drill-down-stat {
+  margin-left: 10px;
+}
+
+.drill-down-stat .icon {
+  margin-right: 5px;
+}
+
+.drill-down-stat .icon.selected {
+  border-bottom: 2px solid black;
+}
+
+.name-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 .name {
@@ -22,14 +40,13 @@
   font-family: sans-serif;
   font-size: 13px;
   font-weight: bold;
-  width: 70px;
-  min-height: 50px;
+  min-height: 20px;
 }
 
 .count {
   min-width: 230px;
   justify-content: space-between;
-  min-height: 50px;
+  min-height: 40px;
   display: flex;
 }
 
@@ -61,4 +78,10 @@
 .recovered .count-val {
   font-weight: bold;
   color: green;
+}
+
+.hospitals .count-val,
+.beds .count-val {
+  font-weight: bold;
+  color: blue;
 }
