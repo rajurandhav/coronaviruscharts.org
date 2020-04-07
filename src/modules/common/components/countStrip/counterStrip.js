@@ -1,6 +1,6 @@
 import React from 'react';
 import './counterStrip.css'
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 
@@ -35,9 +35,9 @@ export const CounterStrip = React.memo(({
     return (
         <div className={classNames({ 'count-strip-container': true, 'nav-strip': backNavigator })}>
             <div className='item name-container'>
-                <span className="name">
-                    {backNavigator && <ArrowBackIosIcon className="icon" size={10} fontSize="small" onClick={onClickHandler ? onClickHandler : null} p
-                    ></ArrowBackIosIcon>}
+                <span className="name" onClick={onClickHandler ? onClickHandler : null}>
+                    {/* {backNavigator && <ArrowBackIosIcon className="icon" size={10} fontSize="small" 
+                    ></ArrowBackIosIcon>} */}
                     {t(regionName)}
                 </span>
                 <span className='drill-down-stat'>
