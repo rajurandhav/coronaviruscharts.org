@@ -29,4 +29,4 @@ Landing page
 Map view
 - Outline map of the entire country for easy recognition, ability to zoom in/ out and pan to the state of interest by the user
 
-xxx-----xxxxx
+xxx-----xxxxx---xxx
