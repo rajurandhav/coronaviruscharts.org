@@ -45,6 +45,7 @@ export const HeaderNav = observer(() => {
               value={lang}
               onChange={e=>changeLang(e.target.value)}
               disableUnderline
+              classes={{ icon:'langSelectIcon' }}
             >
               <MenuItem value="en">English</MenuItem>
               <MenuItem value="mar">मराठी</MenuItem>

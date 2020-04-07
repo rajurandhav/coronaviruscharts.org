@@ -22,3 +22,7 @@
 .logo .seperator {
     color: red;
 }
+
+.langSelectIcon {
+  color: transparent !important
+}
