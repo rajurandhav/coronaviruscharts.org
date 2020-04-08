@@ -33,9 +33,9 @@ export const HeaderNav = observer(() => {
           <Typography variant="h5">
             <Link className="logo" to="/">
               <span className="cause">coronavirus</span>
-              <span className="appliation">chart</span>
+              <span className="appliation">charts</span>
               <span className="seperator">.</span>
-              <span className="mode">live</span>
+              <span className="mode">org</span>
             </Link>
           </Typography>
           <div className="lang">
