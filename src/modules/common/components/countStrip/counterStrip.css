@@ -38,7 +38,7 @@
   align-items: center;
   text-transform: uppercase;
   font-family: sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
   min-height: 20px;
 }
@@ -53,7 +53,7 @@
 .count-item {
   text-transform: uppercase;
   font-family: sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   padding: 5px;
   min-width: 30px;
   min-height: 40px;

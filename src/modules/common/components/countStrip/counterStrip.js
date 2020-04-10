@@ -60,7 +60,7 @@ export const CounterStrip = React.memo(({
                         return (
                             <div key={`regionName-${item.name}`} className={`count-item ${item.name}`}>
                                 <div>{t(item.name)}</div>
-                                <div className="count-val">{item && item.value ? item.value : 0}</div>
+                                <div className="count-val">{item && item.value ? item.value : '-'} {item && item.delta ? `(${item.delta})` : ''}</div>
                             </div>
                         )
                     })

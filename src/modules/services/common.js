@@ -6,7 +6,8 @@ export const getStatObject = memoizeOne((data) => {
     return [
         [{
             name: "confirmed",
-            value: data?.confirmed ?? 0
+            value: data?.confirmed ?? 0,
+            delta: data?.deltaconfirmed??0
         },
         {
             name: "recovered",
