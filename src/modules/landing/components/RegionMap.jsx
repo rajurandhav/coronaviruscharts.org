@@ -55,7 +55,7 @@ export const RegionMap = observer(
         setCountryView,
         regionData
       },
-      coronaTraker: { geoData, getTopoDataForRegion }
+      coronaTracker: { geoData, getTopoDataForRegion }
     } = useStore();
 
     // Effect to fetch topoJSON data

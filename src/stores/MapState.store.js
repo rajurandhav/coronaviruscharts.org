@@ -17,7 +17,7 @@ export class MapState {
         this.view = 'state'
         this.geoRegion = regionName
         this.regionData.push(regionData)
-        console.log(toJS(this.regionData))
+        // console.log(toJS(this.regionData))
         this.regionData = [...this.regionData]
     }
 

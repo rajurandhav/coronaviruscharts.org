@@ -1,7 +1,7 @@
 .landingContainer {
     width: 100%;
     display: flex;
-    margin: 20px;
+    padding: 5px;
     justify-content: center;
 }
 

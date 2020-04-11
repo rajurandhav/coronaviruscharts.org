@@ -1,5 +1,5 @@
 import React from "react";
-import { MapState, ThemeStore, CoronaTracker, UtilsStore, DrawerState } from "../stores";
+import { MapState, ThemeStore, CoronaTracker, UtilsStore, DrawerState, HelpLine } from "../stores";
 import i18n from '../i18n'
 import { useLocalStore } from "mobx-react"; // 6.x or mobx-react-lite@1.4.0
 import { I18nextProvider } from 'react-i18next'
@@ -8,11 +8,12 @@ export const storesContext = React.createContext(null);
 
 export const StoreProvider = ({ children }) => {
   const store = useLocalStore(() => ({
-    coronaTraker: new CoronaTracker(),
+    coronaTracker: new CoronaTracker(),
     themeStore: new ThemeStore(),
     mapState: new MapState(),
     utilStore: new UtilsStore(i18n),
-    drawerState: new DrawerState()
+    drawerState: new DrawerState(),
+    helpLine: new HelpLine()
   }));
   return (
     <storesContext.Provider value={store}>

@@ -8,7 +8,7 @@ import "./Landing.css";
 
 export const Landing = observer(() => {
   const {
-    coronaTraker: {
+    coronaTracker: {
       getStateWiseCount,
       getDistrictWiseCount,
       getBedCounts,

@@ -1,0 +1,20 @@
+.help-search {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 100%;
+    margin: 10px;
+}
+
+.help-search .label {
+    display: flex;
+    justify-self: start;
+    min-width: 90px;
+}
+
+.help-search .filter {
+    margin: 5px 0px;
+    display: flex;
+    justify-content: start;
+    width: 60%
+}

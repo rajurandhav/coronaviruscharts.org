@@ -5,7 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import { StoreProvider } from './contexts';
-import { Landing, HeaderNav, About, SwipeableTemporaryDrawer } from './modules';
+import { Landing, HeaderNav, About, SwipeableTemporaryDrawer, HelpContainer } from './modules';
 import './App.css';
 
 function App() {
@@ -19,6 +19,9 @@ function App() {
             <Switch>
               <Route path="/about">
                 <About />
+              </Route>
+              <Route path="/helpline">
+                <HelpContainer />
               </Route>
               <Route path="/">
                 <Landing />

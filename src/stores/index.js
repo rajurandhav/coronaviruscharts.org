@@ -1,4 +1,5 @@
 export * from './MapState.store'
+export * from './HelpLineState.store'
 export * from './covidApis.store'
 export * from './theme.store'
 export * from './utils.store'

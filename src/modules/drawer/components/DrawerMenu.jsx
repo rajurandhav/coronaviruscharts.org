@@ -10,20 +10,22 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { useStore } from "../../../contexts";
 import { observer } from "mobx-react";
+import { Link } from "react-router-dom";
+import './Menu.css'
 
 const useStyles = makeStyles({
   list: {
     width: 450,
-    height: '100%',
-    backgroundColor: '#F0F0F0',
-    paddingTop: 10
-  }
+    height: "100%",
+    backgroundColor: "#F0F0F0",
+    paddingTop: 10,
+  },
 });
 
 export const MenuList = observer(() => {
   const classes = useStyles();
   const {
-    drawerState: { toggleDrawer }
+    drawerState: { toggleDrawer },
   } = useStore();
   return (
     <div
@@ -33,19 +35,19 @@ export const MenuList = observer(() => {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {["Demographics", "Spread Plot", "Testing", "News"].map(
-          (text, index) => (
+        {["Help lines"].map((text, index) => (
+          <Link to="/helpline">
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          )
-        )}
+          </Link>
+        ))}
       </List>
       <Divider />
-      <List>
+      {/* <List>
         {["Data Source", "About Us", "Join Us"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
@@ -54,7 +56,7 @@ export const MenuList = observer(() => {
             <ListItemText primary={text} />
           </ListItem>
         ))}
-      </List>
+      </List> */}
     </div>
   );
 });

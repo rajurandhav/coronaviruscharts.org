@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { observable, action } from 'mobx'
+import { observable, action, toJS } from 'mobx'
+import _ from 'lodash'
 import { AppConfig } from '../modules'
 
 export class CoronaTracker {
@@ -40,7 +41,7 @@ export class CoronaTracker {
     @action getBedCounts = async () => {
         const { data } = await axios.get(`${AppConfig.apiRootBaseUrl}/stats/hospitals`)
         // console.log(data.data.regional)
-        this.bedCounts = data?.data?.regional??[]
+        this.bedCounts = data?.data?.regional ?? []
     }
 
     @action getTopoDataForRegion = async (viewObject) => {
