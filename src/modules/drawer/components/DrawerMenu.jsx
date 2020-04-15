@@ -35,7 +35,7 @@ export const MenuList = observer(() => {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {["Help lines"].map((text, index) => (
+        {["Helplines"].map((text, index) => (
           <Link to="/helpline">
             <ListItem button key={text}>
               <ListItemIcon>
